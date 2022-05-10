@@ -1,6 +1,6 @@
 const React = require('react');
 const { Component } = React;
-const { ViewPropTypes } = ReactNative = require('react-native');
+const { ViewPropTypes, TextInput } = ReactNative = require('react-native');
 const createReactClass = require('create-react-class');
 const PropTypes = require('prop-types');
 const {
@@ -11,6 +11,7 @@ const {
   Platform,
   StyleSheet,
   InteractionManager,
+  Text
 } = ReactNative;
 
 const ViewPagerAndroid = require('@react-native-community/viewpager');
@@ -396,11 +397,15 @@ const ScrollableTabView = createReactClass({
       };
     }
 
-    return <View style={[styles.container, this.props.style, ]} onLayout={this._handleLayout}>
+    return (
+    <View style={[styles.container, this.props.style, {backgroundColor: '#22096F'}]} onLayout={this._handleLayout}>
+      <View style={{ marginBottom: 30, marginTop: 10 }}>
+        <TextInput placeholder='Pesquisar...' placeholderTextColor={'#fff'} style={{fontFamily: 'Barlow-Regular', color: '#fff', borderColor: '#fff', borderBottomWidth: 1, marginLeft: '10%', width: '80%', paddingBottom: '1.5%' }} onChangeText={this.props.onSearch}/>
+      </View>
       {this.props.tabBarPosition === 'top' && this.renderTabBar(tabBarProps)}
       {this.renderScrollableContent()}
       {(this.props.tabBarPosition === 'bottom' || overlayTabs) && this.renderTabBar(tabBarProps)}
-    </View>;
+    </View>);
   },
 });
 
